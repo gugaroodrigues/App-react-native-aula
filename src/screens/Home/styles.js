@@ -1,49 +1,44 @@
 import { StyleSheet } from 'react-native';
-import { colors, spacing, fontSize } from '../../styles/theme';
 
-export const styles = StyleSheet.create({
-    Container: {
-        flex: 1,
-        alignItems: 'center',
-        backgroundColor: colors.background,
-        paddingHorizontal: spacing.md,
-    },
-
-    content: {
-        width: '100%',
-        marginTop: 50,
-        alignItems: 'center',
-        gap: 20,
-    },
-
-    input: {
-        flex: 1,
-        color: colors.textLight,
-        height: 50,
-        fontSize: fontSize.md,
-    },
-
-    contentInput: {
-        width: '100%',
-        height: 56,
-        borderRadius: 15,
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingHorizontal: spacing.md,
-        gap: 10,
-        borderBottomWidth: 1,
-        borderBottomColor: colors.border,
-    },
-
-    header: {
-        alignSelf: 'flex-start',
-        marginTop: 50,
-    },
-
-    singupLink: {
-        color: colors.primary,
-        fontSize: fontSize.md,
-        fontWeight: 'bold',
-        paddingTop: spacing.lg,
-    },
+export default StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f5f5f5',
+    paddingTop: 50,
+    paddingHorizontal: 20,
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  logoutButton: {
+    padding: 5,
+  },
+  content: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  fab: {
+    position: 'absolute',
+    bottom: 30,
+    right: 30,
+    backgroundColor: '#e53935',
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+  },
 });

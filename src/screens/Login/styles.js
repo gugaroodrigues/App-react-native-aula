@@ -45,5 +45,14 @@ export const styles = StyleSheet.create({
         fontSize: fontSize.md,
         fontWeight: 'bold',
         paddingTop: spacing.lg,
+        
     },
+
+    forgotPasswordLink:{
+        color: colors.primary,
+        fontSize: fontSize.md,
+        fontWeight: 'bold',
+        paddingTop: spacing.lg,
+    },
+
 });

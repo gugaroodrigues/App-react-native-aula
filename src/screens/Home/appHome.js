@@ -1,37 +1,39 @@
-import React, { useState } from "react";
-import { View, Text, TouchableOpacity, TextInput } from 'react-native';
-import { globalStyles } from '../../styles/global';
+import React from 'react';
+import { View, TouchableOpacity, Alert } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
+import { SignOut, Trash } from 'phosphor-react-native';
+import styles from './styles';
 
+export default function HomeScreen() {
+  const navigation = useNavigation();
 
-const appHome = ({ navigation }) => {
+  // Botão de logout: só sai para a tela de LoginScreen
+  const handleLogout = () => {
+    navigation.replace('LoginScreen');
+  };
 
+  // Botão para limpar TODO o AsyncStorage (apaga dados antigos)
+  const handleClearAsync = async () => {
+    try {
+      await AsyncStorage.clear();
+      Alert.alert('Sucesso', 'Todos os dados foram apagados!');
+    } catch (error) {
+      Alert.alert('Erro', 'Não foi possível limpar os dados.');
+    }
+  };
 
-    const [nome, setNome] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [cpf, setCpf] = useState('');
-    const [cell, setCell] = useState('');
+  return (
+    <View style={{ flex: 1 }}>
+      {/* Botão Logout - canto superior direito */}
+      <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+        <SignOut size={28} color="#fff" />
+      </TouchableOpacity>
 
-    const handleHome = () => {
-        // lógica de cadastro
-    };
-
-
-    return (
-
-        <View style={[globalStyles.container, styles.Container]}>
-            <View>
-                
-            </View>
-        </View>
-    );
-
-
-
-
-};
-
-
-
-export default appHome;
+      {/* Botão para limpar Async - canto inferior direito */}
+      <TouchableOpacity style={styles.fab} onPress={handleClearAsync}>
+        <Trash size={28} color="#fff" />
+      </TouchableOpacity>
+    </View>
+  );
+}
