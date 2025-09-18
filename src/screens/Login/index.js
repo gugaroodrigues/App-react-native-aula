@@ -31,7 +31,7 @@ const LoginScreen = ({ navigation }) => {
         const usuarioAtual = todosUsuarios.find(user => user.email.toLowerCase() === email.toLowerCase());
 
         if (!usuarioAtual) {
-            setModalVisible(false);
+            setModalVisible(true);
             return;
         }
 

@@ -1,64 +1,49 @@
-import { StyleSheet, Dimensions, PixelRatio } from 'react-native';
-import { colors, spacing, fontSize } from '../../styles/theme';
+import { StyleSheet } from 'react-native';
 
-const { width, height } = Dimensions.get('window');
-
-// Função para escalar tamanhos com base na largura da tela
-const scale = size => (width / 375) * size; // 375 é uma largura de referência (ex: iPhone 6/7/8)
-const moderateScale = (size, factor = 0.5) => size + (scale(size) - size) * factor;
 
 export const styles = StyleSheet.create({
     Container: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: colors.background,
-        paddingHorizontal: moderateScale(spacing.md), // Usar escala moderada para padding
+        backgroundColor: '#161622',
+        paddingHorizontal: 20,
     },
 
     content: {
         width: '100%',
-        marginTop: height * 0.06, // 6% da altura da tela
+        marginTop: 50,
         alignItems: 'center',
-        gap: moderateScale(20), // Escalar o gap
+        gap: 20,
     },
 
     input: {
-        flex: 1,
-        color: colors.textLight,
-        height: moderateScale(50), // Escalar a altura
-        fontSize: moderateScale(fontSize.md), // Escalar o tamanho da fonte
+        height: 40,
+        borderColor: 'gray',
+        borderWidth: 1,
+        marginBottom: 10,
+        paddingHorizontal: 8,
     },
 
     contentInput: {
         width: '100%',
-        height: moderateScale(56), // Escalar a altura
-        borderRadius: moderateScale(15), // Escalar o border radius
+        height: 56,
+
+        borderRadius: 15,
         flexDirection: 'row',
         alignItems: 'center',
-        paddingHorizontal: moderateScale(spacing.md),
-        gap: moderateScale(10),
+        paddingHorizontal: 20,
+        gap: 10,
+
         borderBottomWidth: 1,
-        borderBottomColor: colors.border,
+        borderBottomColor: '#3a3a3a',
+
     },
 
-    header: {
-        alignSelf: 'flex-start',
-        marginTop: height * 0.06, // 6% da altura da tela
-    },
+    cadastroText: {
+        color: '#f4f4f4',
+        marginTop: 100,
+        fontSize: 30,
+        fontWeight: '600',
+    }
 
-    singupLink: {
-        color: colors.primary,
-        fontSize: moderateScale(fontSize.md),
-        fontWeight: 'bold',
-        paddingTop: moderateScale(spacing.lg),
-        
-    },
-
-    forgotPasswordLink:{
-        color: colors.primary,
-        fontSize: moderateScale(fontSize.md),
-        fontWeight: 'bold',
-        paddingTop: moderateScale(spacing.lg),
-    },
-
-});
+})
