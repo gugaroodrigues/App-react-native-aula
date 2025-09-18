@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, TextInput, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, Alert, ScrollView  } from 'react-native';
 import {
     ArrowLeft,
     EnvelopeIcon,
@@ -85,7 +85,7 @@ const CreateUser = ({ navigation }) => {
                     [
                         {
                             text: 'OK',
-                            onPress: () => navigation.navigate('Login'),
+                            onPress: () => navigation.navigate('LoginScreen'),
                         },
                     ]
                 );
@@ -110,99 +110,103 @@ const CreateUser = ({ navigation }) => {
     };
 
     return (
-        <View style={[globalStyles.container, styles.Container]}>
-            <TouchableOpacity style={styles.header} onPress={() => navigation.goBack()}>
-                <ArrowLeft size={32} color="#f4f4f4" weight="regular" />
-            </TouchableOpacity>
 
-            <Text style={globalStyles.title}>Faça seu cadastro!</Text>
+        <ScrollView >
+            <View style={[globalStyles.container, styles.Container]}>
+                <TouchableOpacity style={styles.header} onPress={() => navigation.goBack()}>
+                    <ArrowLeft size={32} color="#f4f4f4" weight="regular" />
+                </TouchableOpacity>
 
-            <View style={styles.content}>
-                <View style={styles.contentInput}>
-                    <UserIcon size={22} color="#8e8e8e" />
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Nome"
-                        value={nome}
-                        onChangeText={setNome}
-                        placeholderTextColor="#757575"
-                    />
+                <Text style={globalStyles.title}>Faça seu cadastro!</Text>
+
+
+                <View style={styles.content}>
+                    <View style={styles.contentInput}>
+                        <UserIcon size={22} color="#8e8e8e" />
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Nome"
+                            value={nome}
+                            onChangeText={setNome}
+                            placeholderTextColor="#757575"
+                        />
+                    </View>
+
+                    <View style={styles.contentInput}>
+                        <EnvelopeIcon size={22} color="#8e8e8e" />
+                        <TextInput
+                            style={styles.input}
+                            placeholder="E-mail"
+                            value={email}
+                            onChangeText={setEmail}
+                            keyboardType="email-address"
+                            placeholderTextColor="#757575"
+                        />
+                    </View>
+
+                    <View style={styles.contentInput}>
+                        <IdentificationCardIcon size={22} color="#8e8e8e" />
+                        <TextInputMask
+                            style={styles.input}
+                            type={'cpf'}
+                            placeholder="CPF"
+                            value={cpf}
+                            onChangeText={setCpf}
+                            placeholderTextColor="#757575"
+                        />
+                    </View>
+
+                    <View style={styles.contentInput}>
+                        <Phone size={22} color="#8e8e8e" />
+                        <TextInputMask
+                            style={styles.input}
+                            type={'cel-phone'}
+                            options={{ maskType: 'BRL', withDDD: true, dddMask: '(99) ' }}
+                            placeholder="Telefone"
+                            value={cell}
+                            onChangeText={setCell}
+                            placeholderTextColor="#757575"
+                        />
+                    </View>
+
+                    <View style={styles.contentInput}>
+                        <PasswordIcon size={22} color="#8e8e8e" />
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Senha"
+                            value={password}
+                            onChangeText={setPassword}
+                            secureTextEntry
+                            placeholderTextColor="#757575"
+                        />
+                    </View>
+
+                    <View style={styles.contentInput}>
+                        <PasswordIcon size={22} color="#8e8e8e" />
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Confirme sua senha"
+                            value={confirmPassword}
+                            onChangeText={setConfirmPassword}
+                            secureTextEntry
+                            placeholderTextColor="#757575"
+                        />
+                    </View>
                 </View>
 
-                <View style={styles.contentInput}>
-                    <EnvelopeIcon size={22} color="#8e8e8e" />
-                    <TextInput
-                        style={styles.input}
-                        placeholder="E-mail"
-                        value={email}
-                        onChangeText={setEmail}
-                        keyboardType="email-address"
-                        placeholderTextColor="#757575"
-                    />
-                </View>
+                <TouchableOpacity
+                    style={[globalStyles.button, !isFormValid && globalStyles.buttonDisabled]}
+                    onPress={handleCadastro}
+                //disabled={!isFormValid}
+                >
+                    <Text style={globalStyles.buttonText}>Cadastrar</Text>
+                </TouchableOpacity>
 
-                <View style={styles.contentInput}>
-                    <IdentificationCardIcon size={22} color="#8e8e8e" />
-                    <TextInputMask
-                        style={styles.input}
-                        type={'cpf'}
-                        placeholder="CPF"
-                        value={cpf}
-                        onChangeText={setCpf}
-                        placeholderTextColor="#757575"
-                    />
-                </View>
-
-                <View style={styles.contentInput}>
-                    <Phone size={22} color="#8e8e8e" />
-                    <TextInputMask
-                        style={styles.input}
-                        type={'cel-phone'}
-                        options={{ maskType: 'BRL', withDDD: true, dddMask: '(99) ' }}
-                        placeholder="Telefone"
-                        value={cell}
-                        onChangeText={setCell}
-                        placeholderTextColor="#757575"
-                    />
-                </View>
-
-                <View style={styles.contentInput}>
-                    <PasswordIcon size={22} color="#8e8e8e" />
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Senha"
-                        value={password}
-                        onChangeText={setPassword}
-                        secureTextEntry
-                        placeholderTextColor="#757575"
-                    />
-                </View>
-
-                <View style={styles.contentInput}>
-                    <PasswordIcon size={22} color="#8e8e8e" />
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Confirme sua senha"
-                        value={confirmPassword}
-                        onChangeText={setConfirmPassword}
-                        secureTextEntry
-                        placeholderTextColor="#757575"
-                    />
-                </View>
+                <TouchableOpacity style={globalStyles.button} onPress={limparStorage}>
+                    <Text style={globalStyles.buttonText}>Limpar Storage (Temporário)</Text>
+                </TouchableOpacity>
             </View>
-
-            <TouchableOpacity
-                style={[globalStyles.button, !isFormValid && globalStyles.buttonDisabled]}
-                onPress={handleCadastro}
-            //disabled={!isFormValid}
-            >
-                <Text style={globalStyles.buttonText}>Cadastrar</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={globalStyles.button} onPress={limparStorage}>
-                <Text style={globalStyles.buttonText}>Limpar Storage (Temporário)</Text>
-            </TouchableOpacity>
-        </View>
+        </ScrollView>
     );
 };
 
